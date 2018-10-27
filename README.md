@@ -12,7 +12,8 @@
 
 To run a client with name “tom”, I enter:
 
-    a) mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -            Dexec.args=tom
+    a) mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -   
+       Dexec.args=tom
 
 
     b)mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -             Dexec.args=bob
