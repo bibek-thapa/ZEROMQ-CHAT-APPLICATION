@@ -1,21 +1,23 @@
 # ZEROMQ-CHAT-APPLICATION
 
-
-1) mvn package
+1) mvn package and then mvn install
 
 
 2) Running the RMI 
-mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.MyPresenceServer
+
+    a) mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.MyPresenceServer
 
 
 3) Running the clients 
-To run a client with name “bob”, I enter:
 
-mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -Dexec.args=tom
+To run a client with name “tom”, I enter:
+
+    a) mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -            Dexec.args=tom
 
 
-mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -Dexec.args=bob
+    b)mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -             Dexec.args=bob
 
-mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -Dexec.args=alice
+    c)mvn exec:java -Djava.rmi.server.useCodebaseOnly=false -Djava.security.policy=policy -Dexec.mainClass=edu.gvsu.cis.ChatClient -     
+      Dexec.args=alice
 
 
