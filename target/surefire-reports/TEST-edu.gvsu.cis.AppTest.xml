@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.gvsu.cis.AppTest" time="0.068" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.gvsu.cis.AppTest" time="0.038" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -7,7 +7,7 @@
     <property name="java.specification.version" value="1.8"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master\target\test-classes;D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master\target\classes;C:\Users\Dell\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\zeromq\jeromq\0.3.4\jeromq-0.3.4.jar;"/>
+    <property name="java.class.path" value="D:\ZeroMQ-master\target\test-classes;D:\ZeroMQ-master\target\classes;C:\Users\Dell\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\zeromq\jeromq\0.3.4\jeromq-0.3.4.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -18,20 +18,20 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire7806967687020112545\surefirebooter7452109555310352969.jar C:\Users\Dell\AppData\Local\Temp\surefire7806967687020112545 2018-10-26T21-41-48_701-jvmRun1 surefire4152578768022813925tmp surefire_05777977290096655775tmp"/>
-    <property name="surefire.test.class.path" value="D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master\target\test-classes;D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master\target\classes;C:\Users\Dell\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\zeromq\jeromq\0.3.4\jeromq-0.3.4.jar;"/>
+    <property name="sun.java.command" value="C:\Users\Dell\AppData\Local\Temp\surefire5647341494692906806\surefirebooter8567001821988412892.jar C:\Users\Dell\AppData\Local\Temp\surefire5647341494692906806 2018-10-27T00-00-53_768-jvmRun1 surefire1297763900835039358tmp surefire_02447495430719220145tmp"/>
+    <property name="surefire.test.class.path" value="D:\ZeroMQ-master\target\test-classes;D:\ZeroMQ-master\target\classes;C:\Users\Dell\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Dell\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Dell\.m2\repository\org\zeromq\jeromq\0.3.4\jeromq-0.3.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Dell"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_111\jre"/>
-    <property name="basedir" value="D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master"/>
+    <property name="basedir" value="D:\ZeroMQ-master"/>
     <property name="file.separator" value="\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire7806967687020112545\surefirebooter7452109555310352969.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Dell\AppData\Local\Temp\surefire5647341494692906806\surefirebooter8567001821988412892.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_111\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_111\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_111\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -47,7 +47,7 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\Dell\AppData\Local\Temp\"/>
     <property name="java.version" value="1.8.0_111"/>
-    <property name="user.dir" value="D:\Third_Semester\Distributed Systems\LAB 3\ZeroMQ-master"/>
+    <property name="user.dir" value="D:\ZeroMQ-master"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
@@ -60,5 +60,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="edu.gvsu.cis.AppTest" time="0.002"/>
+  <testcase name="shouldAnswerWithTrue" classname="edu.gvsu.cis.AppTest" time="0.001"/>
 </testsuite>

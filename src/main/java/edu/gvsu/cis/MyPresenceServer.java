@@ -1,5 +1,7 @@
 package edu.gvsu.cis;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -100,10 +102,25 @@ public class MyPresenceServer implements PresenceService {
 		
 		ZMQ.Context context = ZMQ.context(1);
 		ZMQ.Socket publisherSocket=context.socket(ZMQ.PUB);	
-		publisherSocket.bind("tcp://*:1001");
-		System.out.println("Succesfully binded to ipc");
-		publisherSocket.sendMore("A");
-		publisherSocket.send(msg);
+		try {
+			String myHost = InetAddress.getLocalHost().getHostName();
+			String p = "tcp://"+myHost+":"+"1001";
+			publisherSocket.bind(p);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		publisherSocket.send(" "+msg);
+		publisherSocket.close();
+		context.term();
 		
 		
 		

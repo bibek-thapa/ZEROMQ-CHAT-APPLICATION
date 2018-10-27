@@ -98,7 +98,7 @@ public class ChatClient
         this.svrThread = new SvrThread();
         Thread t = new Thread(this.svrThread);
         
-        this.subThread = new SubThread();
+        this.subThread = new SubThread(ChatClient.this.myHost,"1001");
         Thread t1 = new Thread(this.subThread);       
         t.start();
         t1.start();
@@ -182,12 +182,12 @@ public class ChatClient
                                 // Don't broadcast to the local client!
                                 if(!userName.equals(this.regInfo.getUserName())) {
                                     System.out.print("Sending message to " + userName + " ... \n" );
-                                    this.nameServer.broadcast(msg); 
+                                    
                                 
                                 
                                 }
                              }
-                             
+                            this.nameServer.broadcast(msg); 
                         } else {
                             System.out.println("No users to broadcast to.\n");
                         }
@@ -216,6 +216,7 @@ public class ChatClient
                             this.nameServer.unregister(this.regInfo.getUserName());
                         }
                         this.svrThread.stop();
+                        this.subThread.stop();
                         System.out.println("Goodbye.");
                         done = true;
                     } else {
@@ -371,6 +372,15 @@ public class ChatClient
     class SubThread implements Runnable
     {
     	boolean done = false;
+    	
+    	String myHost;
+    	String myPort;
+    	public SubThread(String hostAddr,String port) 
+    	{
+    		this.myHost=hostAddr;
+    		this.myPort = port;
+    		
+    	}
 
 		@Override
 		public void run() {
@@ -379,27 +389,23 @@ public class ChatClient
 			
 			ZMQ.Context context = ZMQ.context(1);
 			ZMQ.Socket subscriber = context.socket(ZMQ.SUB);
+			String p = "tcp://"+myHost+":"+myPort;
+			subscriber.connect(p);
 			
-			subscriber.connect("tcp://"+ChatClient.this.myHost+":"+"1001");
-			subscriber.subscribe("A".getBytes());
+			
 			
 			System.out.println("Connected succesfully");
-			System.out.println("In the SUbThread");		
+			System.out.println("In the SUbThread");	
 			
-			while(!Thread.currentThread().isInterrupted()&& !done) {
-	        	
-				 // Read envelope with address
-                String address = subscriber.recvStr ();
-                // Read message contents
-                String contents = subscriber.recvStr ();
-                int pos = contents.indexOf(":");
-                String sender = contents.substring(0,pos);
-                if(!sender.equals(ChatClient.this.regInfo.getUserName()) && ChatClient.this.regInfo.getStatus()){
-                    System.out.println(
-                            "Received Broadcast from " + contents
-                    );
-                }
-			}
+				 subscriber.subscribe(" ".getBytes());
+//				 String s = subscriber.recv().toString();
+//				 System.out.println("Message is"+s);
+				 while(!Thread.currentThread().isInterrupted()&& !done) {
+			        	
+					byte[] message = subscriber.recv(0);
+	                System.out.println(new String(message, ZMQ.CHARSET));
+            				
+				 }
 			
 			subscriber.close();
 			context.term();
