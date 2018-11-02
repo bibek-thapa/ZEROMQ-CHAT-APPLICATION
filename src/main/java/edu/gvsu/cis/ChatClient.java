@@ -75,10 +75,7 @@ public class ChatClient
         this.port_selected = new Random().nextInt(6000) + 1000;
         this.regInfo = new RegistrationInfo(uname,myHost,port_selected,true);
         
-       
-        
-        System.out.println(this.regInfo.getPort());
-
+    
         // Step 4. register the client with the presence service to advertise it
         // is available for chatting.
         try {
@@ -98,7 +95,7 @@ public class ChatClient
         this.svrThread = new SvrThread();
         Thread t = new Thread(this.svrThread);
         
-        this.subThread = new SubThread(ChatClient.this.myHost,"1001");
+        this.subThread = new SubThread(ChatClient.this.myHost,"1001",this.regInfo);
         Thread t1 = new Thread(this.subThread);       
         t.start();
         t1.start();
@@ -173,21 +170,21 @@ public class ChatClient
                             System.out.println("Missing the message.  Enter: broadcast {msg}");
                             continue;
                         }
-                        String msg = cmd.substring(pos+1);
+                        String msg = regInfo.getUserName() +":"+ cmd.substring(pos+1);
                         Vector<RegistrationInfo> clients = this.nameServer.listRegisteredUsers();
                         if(clients != null) {
                             System.out.println("\nBroadcasting to the following users:\n");
                             for(RegistrationInfo client : clients) {
                                 String userName = client.getUserName();
-                                // Don't broadcast to the local client!
-                                if(!userName.equals(this.regInfo.getUserName())) {
+                                
+                               if(!userName.equals(this.regInfo.getUserName())) {
                                     System.out.print("Sending message to " + userName + " ... \n" );
                                     
-                                
-                                
                                 }
                              }
+                            
                             this.nameServer.broadcast(msg); 
+                            
                         } else {
                             System.out.println("No users to broadcast to.\n");
                         }
@@ -219,6 +216,7 @@ public class ChatClient
                         this.subThread.stop();
                         System.out.println("Goodbye.");
                         done = true;
+                        System.exit(0);
                     } else {
                         System.out.println("Hmm, not sure what you meant there. Try again.");
                     }
@@ -325,12 +323,11 @@ public class ChatClient
         	ZMQ.Context context = ZMQ.context(1);
             ZMQ.Socket socket = context.socket(ZMQ.REP);
             socket.bind("tcp://"+ChatClient.this.myHost+":"+Integer.toString(ChatClient.this.port_selected));
-            System.out.println("Successfully binded");
         	while(!Thread.currentThread().isInterrupted()&& !done) {
         	
             	byte[] message = socket.recv(0);
                 System.out.println(new String(message, ZMQ.CHARSET));   
-                System.out.println("After the message");
+                
 				socket.send("Thank you");
             }
         	
@@ -375,10 +372,12 @@ public class ChatClient
     	
     	String myHost;
     	String myPort;
-    	public SubThread(String hostAddr,String port) 
+    	RegistrationInfo regInfo;
+    	public SubThread(String hostAddr,String port,RegistrationInfo reg) 
     	{
     		this.myHost=hostAddr;
     		this.myPort = port;
+    		this.regInfo=reg;
     		
     	}
 
@@ -386,30 +385,38 @@ public class ChatClient
 		public void run() {
 			// TODO Auto-generated method stub
 			
+			//If not this username 
+			
 			
 			ZMQ.Context context = ZMQ.context(1);
 			ZMQ.Socket subscriber = context.socket(ZMQ.SUB);
 			String p = "tcp://"+myHost+":"+myPort;
-			subscriber.connect(p);
+			subscriber.connect(p);			
 			
-			
-			
-			System.out.println("Connected succesfully");
-			System.out.println("In the SUbThread");	
 			
 				 subscriber.subscribe(" ".getBytes());
-//				 String s = subscriber.recv().toString();
-//				 System.out.println("Message is"+s);
+//				 
 				 while(!Thread.currentThread().isInterrupted()&& !done) {
 			        	
-					byte[] message = subscriber.recv(0);
-	                System.out.println(new String(message, ZMQ.CHARSET));
+//					byte[] message = subscriber.recv(0);
+//	                System.out.println(new String(message, ZMQ.CHARSET));
+	              
+                    // Read message
+                    String msgContent = subscriber.recvStr ();
+                    int pos = msgContent.indexOf(":");
+                    int pos1 = msgContent.length();
+                    String sender =msgContent.substring(0,pos).trim();
+                    String msg = msgContent.substring(pos+1, pos1).trim();
+                    if(!sender.equals(ChatClient.this.regInfo.getUserName()) && ChatClient.this.regInfo.getStatus()){
+                        System.out.println("Broadcast message is : " + msg);
+                  
+                    }
             				
 				 }
-			
+		
 			subscriber.close();
 			context.term();
-			
+		
 		}
 		
 		 public void stop()
